@@ -1,0 +1,120 @@
+{
+  "cluj-farmland": [
+    {
+      "date": "2026-09-09",
+      "ndvi": 0.502,
+      "cloud_cover": 0.0
+    },
+    {
+      "date": "2026-09-17",
+      "ndvi": 0.496,
+      "cloud_cover": 0.1
+    },
+    {
+      "date": "2026-09-29",
+      "ndvi": 0.482,
+      "cloud_cover": 5.8
+    },
+    {
+      "date": "2026-10-04",
+      "ndvi": 0.478,
+      "cloud_cover": 2.5
+    }
+  ],
+  "baragan-plain": [
+    {
+      "date": "2026-08-02",
+      "ndvi": 0.483,
+      "cloud_cover": 0.1
+    },
+    {
+      "date": "2026-08-14",
+      "ndvi": 0.43,
+      "cloud_cover": 28.8
+    },
+    {
+      "date": "2026-08-29",
+      "ndvi": 0.361,
+      "cloud_cover": 0.0
+    },
+    {
+      "date": "2026-09-11",
+      "ndvi": 0.286,
+      "cloud_cover": 0.2
+    },
+    {
+      "date": "2026-10-11",
+      "ndvi": 0.312,
+      "cloud_cover": 0.0
+    },
+    {
+      "date": "2026-11-24",
+      "ndvi": 0.493,
+      "cloud_cover": 0.5
+    }
+  ],
+  "apuseni-forest": [
+    {
+      "date": "2026-08-08",
+      "ndvi": 0.788,
+      "cloud_cover": 24.4
+    },
+    {
+      "date": "2026-08-22",
+      "ndvi": 0.762,
+      "cloud_cover": 15.8
+    },
+    {
+      "date": "2026-09-02",
+      "ndvi": 0.809,
+      "cloud_cover": 11.3
+    },
+    {
+      "date": "2026-09-19",
+      "ndvi": 0.716,
+      "cloud_cover": 25.6
+    },
+    {
+      "date": "2026-10-04",
+      "ndvi": 0.733,
+      "cloud_cover": 0.6
+    },
+    {
+      "date": "2026-11-08",
+      "ndvi": 0.66,
+      "cloud_cover": 0.0
+    }
+  ],
+  "danube-delta": [
+    {
+      "date": "2026-07-25",
+      "ndvi": 0.75,
+      "cloud_cover": 28.3
+    },
+    {
+      "date": "2026-08-06",
+      "ndvi": 0.718,
+      "cloud_cover": 1.0
+    },
+    {
+      "date": "2026-08-16",
+      "ndvi": 0.734,
+      "cloud_cover": 0.0
+    },
+    {
+      "date": "2026-09-05",
+      "ndvi": 0.705,
+      "cloud_cover": 0.0
+    },
+    {
+      "date": "2026-10-03",
+      "ndvi": 0.665,
+      "cloud_cover": 0.3
+    },
+    {
+      "date": "2026-11-24",
+      "ndvi": 0.393,
+      "cloud_cover": 0.9
+    }
+  ]
+}
