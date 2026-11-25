@@ -43,8 +43,26 @@ def test_ndvi_classification(value: float, status: str) -> None:
 
 
 def test_live_failure_is_502(monkeypatch: pytest.MonkeyPatch) -> None:
+    ndvi._live_cache.clear()
+
     def boom(_region):
         raise RuntimeError("offline")
 
     monkeypatch.setattr(ndvi, "live_series", boom)
     assert client.get("/api/regions/cluj-farmland/ndvi?source=live").status_code == 502
+
+
+def test_live_result_is_cached(monkeypatch: pytest.MonkeyPatch) -> None:
+    calls = []
+    sample = ndvi.sample_series(REGIONS[0])
+    assert sample is not None
+
+    def fake_live(_region):
+        calls.append(1)
+        return sample
+
+    monkeypatch.setattr(ndvi, "live_series", fake_live)
+    ndvi._live_cache.clear()
+    assert client.get("/api/regions/cluj-farmland/ndvi?source=live").status_code == 200
+    assert client.get("/api/regions/cluj-farmland/ndvi?source=live").status_code == 200
+    assert len(calls) == 1

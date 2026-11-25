@@ -24,7 +24,8 @@ ARG APP_VERSION=local
 
 # config.js is rewritten at start-up by the non-root nginx user.
 USER root
-RUN echo "$APP_VERSION" > /usr/share/nginx/html/version.txt \
+RUN apk upgrade --no-cache \
+    && echo "$APP_VERSION" > /usr/share/nginx/html/version.txt \
     && chown 101:101 /usr/share/nginx/html/config.js \
     && chmod 0755 /docker-entrypoint.d/40-runtime-config.sh
 USER 101

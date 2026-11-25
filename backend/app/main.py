@@ -68,6 +68,6 @@ async def region_ndvi(
             raise HTTPException(status_code=404, detail="No sample data for this region")
         return series
     try:
-        return await run_in_threadpool(ndvi.live_series, region)
+        return await run_in_threadpool(ndvi.cached_live_series, region)
     except Exception as error:  # upstream catalogue or archive unavailable
         raise HTTPException(status_code=502, detail=f"Live Sentinel-2 data unavailable: {error}") from error

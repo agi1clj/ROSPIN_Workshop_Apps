@@ -11,12 +11,14 @@ WORKDIR /app
 
 # System library required by rasterio (reads the Sentinel-2 files).
 RUN apt-get update \
+    && apt-get upgrade -y \
     && apt-get install -y --no-install-recommends libexpat1 \
     && rm -rf /var/lib/apt/lists/*
 
 # Install dependencies first so this layer is cached when only the code changes.
 COPY requirements.txt .
-RUN pip install -r requirements.txt
+# pip is removed afterwards: the running container never needs it (smaller attack surface).
+RUN pip install -r requirements.txt && pip uninstall -y pip
 
 COPY app/ ./app/
 

@@ -20,7 +20,7 @@ Shows vegetation health (NDVI) of four Romanian regions from Sentinel-2 satellit
 - Keep `GET /health` (backend, returns `version`) and `GET /healthz` (frontend, Nginx). Azure probes and CI use them.
 - Never put secrets or Azure IDs in code, workflows or commits. Azure access uses GitHub OIDC variables, no passwords.
 - Do not commit `.env` files. Images run as non-root.
-- Add a region: append to `backend/app/regions.py`, run `docker compose run --rm backend python -m app.export_sample` (needs internet), add a test.
+- Add a region: append to `backend/app/regions.py`, then `docker compose run --rm -v "$PWD/backend/app:/app/app" backend python -m app.export_sample <region-id>` (needs internet, about 1 minute; writes `backend/app/sample_ndvi.json` on the host). Without sample data the test `test_every_region_has_sample_data` fails and CI blocks the deploy.
 - Commits follow Conventional Commits: `type(scope): summary` (feat, fix, docs, refactor, test, ci, chore).
 - Never run `terraform apply/destroy` or Azure commands without explicit user approval.
 

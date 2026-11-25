@@ -9,6 +9,8 @@ Two sources:
 """
 
 import json
+import threading
+import time
 from datetime import date
 from functools import lru_cache
 from pathlib import Path
@@ -130,3 +132,20 @@ def live_series(region: Region) -> NdviSeries:
     if not points:
         raise RuntimeError("No clear Sentinel-2 scene found for this region")
     return NdviSeries(region=region, source="live", points=points, summary=summarize(points))
+
+
+# Live reads take about a minute and use CPU. One lock lets a single live read run at a time,
+# and a one-hour cache answers repeated requests, so a public endpoint cannot be used to burn compute.
+CACHE_SECONDS = 3600
+_live_cache: dict[str, tuple[float, NdviSeries]] = {}
+_live_lock = threading.Lock()
+
+
+def cached_live_series(region: Region) -> NdviSeries:
+    with _live_lock:
+        hit = _live_cache.get(region.id)
+        if hit and time.monotonic() - hit[0] < CACHE_SECONDS:
+            return hit[1]
+        series = live_series(region)
+        _live_cache[region.id] = (time.monotonic(), series)
+        return series
